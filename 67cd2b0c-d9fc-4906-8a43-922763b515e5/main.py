@@ -17,7 +17,7 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
-        if len(self.data) % 2 == 0:
+        if len(str(self.data)) % 2 == 0:
             log('hiii')
             allocation_dict = {i: 1 for i in self.tickers}
         else:
