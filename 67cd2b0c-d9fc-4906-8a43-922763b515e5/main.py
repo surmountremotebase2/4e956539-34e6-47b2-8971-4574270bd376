@@ -4,22 +4,20 @@ from surmount.logging import log
 
 class TradingStrategy(Strategy):
 
+    def __init__(self):
+    self.tickers = ["AAPL", "GOOGL"]
+
     @property
     def assets(self):
-        return ["QQQ"]
+        return self.tickers
 
     @property
     def interval(self):
-        return "1hour"
+        return "1day"
 
     def run(self, data):
         d = data["ohlcv"]
         qqq_stake = 0
         log(str(d))
-        if len(d)>3 and "13:00" in d[-1]["QQQ"]["date"]:
-            v_shape = d[-2]["QQQ"]["close"]<d[-3]["QQQ"]["close"] and d[-1]["QQQ"]["close"]>d[-2]["QQQ"]["close"]
-            log(str(v_shape))
-            if v_shape:
-                qqq_stake = 1
 
-        return TargetAllocation({"QQQ": qqq_stake})
+        return TargetAllocation({"AAPL": 1, "GOOGL": 1})
