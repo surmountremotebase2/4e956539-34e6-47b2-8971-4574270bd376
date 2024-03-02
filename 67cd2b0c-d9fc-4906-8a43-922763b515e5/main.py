@@ -17,13 +17,12 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         d = data["ohlcv"]
-        allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
         log(str(d))
-        if len(d) % 2 == 0:
-            log('buy')
-            allocation_dict = {i: 1 for i in self.tickers}
-        else:
-            log('sell')
-            allocation_dict = {i: 0 for i in self.tickers}
+        
+           
+        allocation_dict_1 = {i: 1 for i in self.tickers}
+    
+          
+        allocation_dict_2 = {i: 0 for i in self.tickers}
 
-        return TargetAllocation(allocation_dict)
+        return TargetAllocation(**allocation_dict_1, **allocation_dict_2)
