@@ -4,7 +4,7 @@ from surmount.logging import log
 
 class TradingStrategy(Strategy):
     def __init__(self):
-        self.tickers = ["SPY", "QQQ", "AAPL", "GOOGL"]
+        self.tickers = ["GOOGL"]
 
     @property
     def assets(self):
@@ -24,7 +24,7 @@ class TradingStrategy(Strategy):
         if len(d) % 2 == 0:
             allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
         else:
-            allocation_dict = {i: -(1/len(self.tickers)*3) for i in self.tickers}
+            allocation_dict = {i: -(1/len(self.tickers)) for i in self.tickers}
 
         log(str(allocation_dict))
         return TargetAllocation(allocation_dict)
