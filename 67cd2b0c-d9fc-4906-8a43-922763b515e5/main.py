@@ -20,10 +20,10 @@ class TradingStrategy(Strategy):
         allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
         log(str(d))
         if len(d) % 2 == 0:
-            log('hiii')
+            log('buy')
             allocation_dict = {i: 1 for i in self.tickers}
         else:
-            log('byeee')
+            log('sell')
             allocation_dict = {i: 0 for i in self.tickers}
 
         return TargetAllocation(allocation_dict)
