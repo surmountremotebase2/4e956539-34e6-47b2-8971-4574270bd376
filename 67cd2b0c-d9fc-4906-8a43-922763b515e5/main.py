@@ -22,8 +22,8 @@ class TradingStrategy(Strategy):
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
             log('buy') 
-            allocation_dict = {i: 1 for i in self.tickers}
+            allocation_dict = {"GOOGL": 0.1}
         else:
             log('sell')
-            allocation_dict = {"GOOGL": 0.5}
+            allocation_dict = {"GOOGL": 0.2}
         return TargetAllocation(allocation_dict)
