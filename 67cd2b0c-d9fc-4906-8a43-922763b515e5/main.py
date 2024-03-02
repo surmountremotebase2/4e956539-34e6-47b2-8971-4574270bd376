@@ -4,12 +4,9 @@ from surmount.logging import log
 
 class TradingStrategy(Strategy):
 
-    def __init__(self):
-    self.tickers = ["AAPL", "GOOGL"]
-
     @property
     def assets(self):
-        return self.tickers
+        return ["AAPL", "GOOGL"]
 
     @property
     def interval(self):
@@ -17,7 +14,7 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         d = data["ohlcv"]
-        qqq_stake = 0
+        
         log(str(d))
 
         return TargetAllocation({"AAPL": 1, "GOOGL": 1})
