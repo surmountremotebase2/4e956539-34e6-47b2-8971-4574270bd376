@@ -19,7 +19,7 @@ class TradingStrategy(Strategy):
         d = data["ohlcv"]
         
         allocation_dict = {i: 0 for i in self.tickers}
-        if len(d) % 2 == 0:   
-            allocation_dict = {i: 1 for i in self.tickers}
+        # if len(d) % 2 == 0:   
+        allocation_dict = {i: 1 for i in self.tickers}
 
         return TargetAllocation(allocation_dict)
