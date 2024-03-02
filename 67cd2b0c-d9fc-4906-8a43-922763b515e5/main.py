@@ -19,7 +19,7 @@ class TradingStrategy(Strategy):
         d = data["ohlcv"]
         log(str(d))
         
-        allocation_dict_1 = {i: 0 for i in self.tickers}
+        allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 0:   
             allocation_dict = {i: 1 for i in self.tickers}
 
