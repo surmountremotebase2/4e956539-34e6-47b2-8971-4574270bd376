@@ -20,4 +20,4 @@ class TradingStrategy(Strategy):
         log(str(allocation_dict))
         log(str(d))
 
-        return TargetAllocation({"AAPL": 1, "GOOGL": 1})
+        return TargetAllocation(allocation_dict)
