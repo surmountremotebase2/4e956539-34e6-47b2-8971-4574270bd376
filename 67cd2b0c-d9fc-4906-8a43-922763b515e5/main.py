@@ -16,6 +16,7 @@ class TradingStrategy(Strategy):
         d = data["ohlcv"]
         qqq_stake = 0
         if len(d)>3 and "13:00" in d[-1]["QQQ"]["date"]:
+            log(str(d))
             v_shape = d[-2]["QQQ"]["close"]<d[-3]["QQQ"]["close"] and d[-1]["QQQ"]["close"]>d[-2]["QQQ"]["close"]
             log(str(v_shape))
             if v_shape:
