@@ -14,7 +14,8 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         d = data["ohlcv"]
-        
+        allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
+        log(str(allocation_dict))
         log(str(d))
 
         return TargetAllocation({"AAPL": 1, "GOOGL": 1})
