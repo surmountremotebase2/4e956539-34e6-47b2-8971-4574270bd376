@@ -4,13 +4,16 @@ from surmount.logging import log
 
 class TradingStrategy(Strategy):
 
-    @property
-    def assets(self):
-        return ["GOOGL"]
+    def __init__(self):
+        self.tickers = ["GOOGL"]
 
     @property
     def interval(self):
         return "1day"
+
+    @property
+    def assets(self):
+        return self.tickers
 
     def run(self, data):
         allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
