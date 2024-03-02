@@ -15,6 +15,7 @@ def SMAVol(ticker, data, length):
     '''
     close = [i[ticker]["volume"] for i in data]
     d = ta.sma(pd.Series(close), length=length)
+    print('d: ', d);
     if d is None:
         return None
     return d.tolist()
@@ -40,6 +41,7 @@ class TradingStrategy(Strategy):
         vols = [i["VIRT"]["volume"] for i in data["ohlcv"]]
         smavols = SMAVol("VIRT", data["ohlcv"], 40)
         smavols2 = SMAVol("VIRT", data["ohlcv"], 10)
+        
 
         if len(vols)==0:
                 return TargetAllocation({})
