@@ -25,5 +25,5 @@ class TradingStrategy(Strategy):
             allocation_dict = {i: 1 for i in self.tickers}
         else:
             log('sell')
-            allocation_dict = {i: -1 for i in self.tickers}
+            allocation_dict = {"GOOGL": 0, "GOOGL": 1}
         return TargetAllocation(allocation_dict)
