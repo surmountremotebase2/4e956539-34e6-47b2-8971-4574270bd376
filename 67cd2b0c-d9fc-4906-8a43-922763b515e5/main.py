@@ -6,7 +6,7 @@ class TradingStrategy(Strategy):
 
     @property
     def assets(self):
-        return ["QQQ", "SQQQ"]
+        return ["SQQQ"]
 
     @property
     def interval(self):
@@ -44,4 +44,4 @@ class TradingStrategy(Strategy):
             qqq_stake = 0
             sqqq_stake = 0
 
-        return TargetAllocation({"SQQQ": sqqq_stake, "QQQ": qqq_stake})
+        return TargetAllocation({"SQQQ": sqqq_stake})
