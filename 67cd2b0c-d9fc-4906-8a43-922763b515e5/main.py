@@ -25,4 +25,4 @@ class TradingStrategy(Strategy):
         else:
             allocation_dict = {i: 0 for i in self.tickers}
 
-        return TargetAllocation({**allocation_dict_1, **allocation_dict_2})
+        return TargetAllocation(allocation_dict)
