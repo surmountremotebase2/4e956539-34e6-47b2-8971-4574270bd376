@@ -138,6 +138,11 @@ class TradingStrategy(Strategy):
             log(str(curr_ret))
             log('curr ret count: ')
             log(str(sum(pd.notna(curr_ret))))
+
+            log('before allocation')
+            log(str(curr_allocation_dict))
+            log(str(self.prev_allocation_dict))
+
             if sum(pd.notna(curr_ret)) >= 3:
                 log('inside if')
                 top_n = curr_ret.nlargest(3)
@@ -147,8 +152,10 @@ class TradingStrategy(Strategy):
                 total_keys = len(top_n)
                 for key in top_n.index:
                     curr_allocation_dict[key] = 1 / total_keys
+                
+                self.prev_allocation_dict = curr_allocation_dict
+                log('after allocation')
+                log(str(curr_allocation_dict))
+                log(str(self.prev_allocation_dict))
 
                 return TargetAllocation(curr_allocation_dict)
-
-        
-        
