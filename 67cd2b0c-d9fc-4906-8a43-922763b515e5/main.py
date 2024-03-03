@@ -150,5 +150,4 @@ class TradingStrategy(Strategy):
             # return TargetAllocation(self.prev_allocation_dict)
         log('allocation')
         log(str(curr_allocation_dict))
-        TargetAllocation({'XLY': 1})
-        
+        return TargetAllocation({'XLY': 1})
