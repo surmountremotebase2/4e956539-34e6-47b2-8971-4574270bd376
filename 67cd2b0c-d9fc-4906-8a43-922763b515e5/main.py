@@ -2,6 +2,7 @@ from surmount.base_class import Strategy, TargetAllocation
 from surmount.technical_indicators import SMA, BB
 from surmount.logging import log
 from pandas_market_calendars import get_calendar
+import pandas as pd
 
 class TradingStrategy(Strategy):
 
