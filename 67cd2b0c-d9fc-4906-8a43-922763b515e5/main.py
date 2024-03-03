@@ -103,7 +103,7 @@ class TradingStrategy(Strategy):
         market_open_dates = None
 
         if not self.date_fetched:
-            last_trading_days, market_open_dates = self.get_market_dates(start_date, end_date, exchange_name)
+            market_open_dates, last_trading_days = self.get_market_dates(start_date, end_date, exchange_name)
             self.date_fetched = True
 
         log('market_open_dates')
