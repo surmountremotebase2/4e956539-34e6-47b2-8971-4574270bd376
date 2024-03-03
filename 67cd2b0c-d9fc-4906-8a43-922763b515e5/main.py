@@ -106,7 +106,7 @@ class TradingStrategy(Strategy):
         returns = self.calculate_return(df, days=2)
 
         log('return: ')
-        log(str(type(returns)))
+        log(str(returns))
 
         timestamp = dates[-1]
         log('latest date: ')
