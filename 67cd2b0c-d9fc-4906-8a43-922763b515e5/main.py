@@ -84,6 +84,8 @@ class TradingStrategy(Strategy):
         # Converting to DataFrame
         df = pd.DataFrame(ticker_values, index=pd.to_datetime(dates))
 
+        log('df: ')
+        log(str(df))
 
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
