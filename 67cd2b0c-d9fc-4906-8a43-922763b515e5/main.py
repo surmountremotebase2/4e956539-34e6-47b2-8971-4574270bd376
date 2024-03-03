@@ -130,31 +130,19 @@ class TradingStrategy(Strategy):
 
         log(str(is_realloc_date))
 
-        # if is_realloc_date:
-        #     log('before allocation')
-        #     log(str(curr_allocation_dict))
-        #     log(str(self.prev_allocation_dict))
+        if not is_realloc_date:
+            log('before allocation')
+            log(str(curr_allocation_dict))
+            log(str(self.prev_allocation_dict))
 
-        #     curr_allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
-        #     self.prev_allocation_dict = curr_allocation_dict
+            curr_allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
+            self.prev_allocation_dict = curr_allocation_dict
 
-        #     log('after allocation')
-        #     log(str(curr_allocation_dict))
-        #     log(str(self.prev_allocation_dict))
+            log('after allocation')
+            log(str(curr_allocation_dict))
+            log(str(self.prev_allocation_dict))
 
-        #     return TargetAllocation(curr_allocation_dict)
-        # else:
-        #     log('allocation')
-        #     log(str(curr_allocation_dict))
-        #     log(str(self.prev_allocation_dict))
-        #     return TargetAllocation(self.prev_allocation_dict)
-        # log('allocation')
-        # log(str(curr_allocation_dict))
-        i = 0
-        if i == 0:
-            return TargetAllocation({"SPY": 1})
-            i=1
-        else:
-            log('out')
+            return TargetAllocation(curr_allocation_dict)
+
         
         
