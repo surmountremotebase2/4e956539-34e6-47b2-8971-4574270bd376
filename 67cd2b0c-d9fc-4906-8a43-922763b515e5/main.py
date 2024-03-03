@@ -73,7 +73,7 @@ class TradingStrategy(Strategy):
         
             self.date_fetched = True
             
-        log(str(d[-1]))
+        log(str(d))
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
             log('buy') 
