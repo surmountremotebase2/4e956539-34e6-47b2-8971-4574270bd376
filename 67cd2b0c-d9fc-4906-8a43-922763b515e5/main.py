@@ -92,7 +92,6 @@ class TradingStrategy(Strategy):
         
 
     def run(self, data):
-        self.prev_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
         log(str(d))
@@ -136,9 +135,9 @@ class TradingStrategy(Strategy):
 
             curr_allocation_dict = {i: 0/len(self.tickers) for i in self.tickers}
 
-            prev_allocation_dict = curr_allocation_dict
+            self.prev_allocation_dict = curr_allocation_dict
             log('after allocation')
-            log(str(prev_allocation_dict))
+            log(str(self.prev_allocation_dict))
             log(str(curr_allocation_dict))
             
 
