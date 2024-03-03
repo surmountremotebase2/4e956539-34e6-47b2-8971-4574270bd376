@@ -9,6 +9,8 @@ class TradingStrategy(Strategy):
     def __init__(self):
         self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
 
+    self.date_fetched = False
+
     @property
     def interval(self):
         return "1day"
@@ -54,9 +56,8 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         d = data["ohlcv"]
-        date_fetched = False
 
-        if not date_fetched:
+        if not self.date_fetched:
             start_date = '2024-01-01'
             end_date = '2024-12-31'
             exchange_name = 'NYSE'
@@ -82,5 +83,3 @@ class TradingStrategy(Strategy):
             log('sell')
             allocation_dict = {"GOOGL": 0.2}
         return TargetAllocation(allocation_dict)
-
-
