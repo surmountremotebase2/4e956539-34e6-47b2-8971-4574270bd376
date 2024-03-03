@@ -18,7 +18,7 @@ class TradingStrategy(Strategy):
     def run(self, data):
         d = data["ohlcv"]
         
-        log(str(type(d)))
+        log(str(type(d[0])))
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
             log('buy') 
