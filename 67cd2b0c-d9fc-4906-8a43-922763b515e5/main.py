@@ -71,7 +71,7 @@ class TradingStrategy(Strategy):
             log('last trading dates')
             log(str(last_trading_days))
         
-            date_fetched = True
+            self.date_fetched = True
             
         log(str(d[-1]))
         allocation_dict = {i: 0 for i in self.tickers}
