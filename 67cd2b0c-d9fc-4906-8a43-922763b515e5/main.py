@@ -15,6 +15,7 @@ class TradingStrategy(Strategy):
     def assets(self):
         return self.tickers
 
+    @property
     def get_market_open_dates(start_date, end_date, exchange_name='NYSE'):
 
         calendar = get_calendar(exchange_name)
@@ -43,5 +44,3 @@ class TradingStrategy(Strategy):
             log('sell')
             allocation_dict = {"GOOGL": 0.2}
         return TargetAllocation(allocation_dict)
-
-
