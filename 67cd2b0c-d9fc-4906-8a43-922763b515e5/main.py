@@ -54,21 +54,25 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         d = data["ohlcv"]
+        date_fetched = false
 
-        start_date = '2024-01-01'
-        end_date = '2024-12-31'
-        exchange_name = 'NYSE'
+        if not date_fetched:
+            start_date = '2024-01-01'
+            end_date = '2024-12-31'
+            exchange_name = 'NYSE'
 
-        market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
+            market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
-        log('market_open_dates')
-        log(str(market_open_dates))
+            log('market_open_dates')
+            log(str(market_open_dates))
 
-        last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
+            last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
 
-        log('last trading dates')
-        log(str(last_trading_days))
+            log('last trading dates')
+            log(str(last_trading_days))
         
+            date_fetched = True
+            
         log(str(d[-1]))
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
@@ -78,5 +82,3 @@ class TradingStrategy(Strategy):
             log('sell')
             allocation_dict = {"GOOGL": 0.2}
         return TargetAllocation(allocation_dict)
-
-
