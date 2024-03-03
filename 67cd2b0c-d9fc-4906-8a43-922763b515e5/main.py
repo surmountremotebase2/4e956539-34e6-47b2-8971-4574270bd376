@@ -67,17 +67,15 @@ class TradingStrategy(Strategy):
             return False
 
     def get_data(self, data):
-        data_df = self.get_data(d)
-
-        tickers = list(d[0].keys())
+        tickers = list(data[0].keys())
 
         log(str(tickers))
 
-        dates = [list(entry.values())[0]['date'] for entry in d]
+        dates = [list(entry.values())[0]['date'] for entry in data]
 
         log(str(dates))
 
-        ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
+        ticker_values = {ticker: [entry[ticker]['close'] for entry in data] for ticker in tickers}
 
         df = pd.DataFrame(ticker_values, index=pd.to_datetime(dates))
 
@@ -106,7 +104,7 @@ class TradingStrategy(Strategy):
         log(str(d))
 
         data_df = self.get_data(d)
-
+      
         log('data df: ')
         log(str(data_df))
 
