@@ -7,6 +7,8 @@ import pandas as pd
 class TradingStrategy(Strategy):
 
     def __init__(self):
+        self.last_trading_days = None
+        self.market_open_dates = None
         self.date_fetched = False
         self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
 
@@ -98,9 +100,6 @@ class TradingStrategy(Strategy):
         start_date = '2024-02-05'
         end_date = '2024-12-31'
         exchange_name = 'NYSE'
-
-        last_trading_days = None
-        market_open_dates = None
 
         if not self.date_fetched:
             market_open_dates, last_trading_days = self.get_market_dates(start_date, end_date, exchange_name)
