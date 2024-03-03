@@ -131,11 +131,15 @@ class TradingStrategy(Strategy):
 
         log(str(is_realloc_date))
 
-        curr_ret = returns.loc[timestamp]
-        log('curr_ret: ')
-        log(str(curr_ret))
 
         if not is_realloc_date:
+            curr_ret = returns.loc[timestamp]
+            log('curr_ret: ')
+            log(str(curr_ret))
+            log('curr ret count: ')
+            log(str(sum(pd.notna(curr_ret))))
+            if sum(pd.notna(curr_ret)) >= 3:
+                log('inside if')
             log('before allocation')
             log(str(curr_allocation_dict))
             log(str(self.prev_allocation_dict))
