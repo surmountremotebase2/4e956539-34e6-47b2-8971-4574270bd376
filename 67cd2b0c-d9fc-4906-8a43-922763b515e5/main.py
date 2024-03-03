@@ -135,8 +135,8 @@ class TradingStrategy(Strategy):
             log(str(self.prev_allocation_dict))
 
             curr_allocation_dict = {i: 0/len(self.tickers) for i in self.tickers}
-
             self.prev_allocation_dict = curr_allocation_dict
+            
             log('after allocation')
             log(str(self.prev_allocation_dict))
             log(str(curr_allocation_dict))
