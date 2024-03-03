@@ -150,5 +150,11 @@ class TradingStrategy(Strategy):
         #     return TargetAllocation(self.prev_allocation_dict)
         # log('allocation')
         # log(str(curr_allocation_dict))
-        return TargetAllocation({"SPY": 1})
+        i = 0
+        if i == 0:
+            return TargetAllocation({"SPY": 1})
+            i=1
+        else 
+            TargetAllocation({"SPY": 1})
+        
         
