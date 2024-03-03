@@ -87,7 +87,7 @@ class TradingStrategy(Strategy):
         
         self.market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
-        self.last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
+        self.last_trading_days = self.get_alloc_dates_for_nth_trading_day(self.market_open_dates, 21)
         
 
     def run(self, data):
