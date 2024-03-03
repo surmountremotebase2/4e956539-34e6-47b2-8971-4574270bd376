@@ -84,6 +84,7 @@ class TradingStrategy(Strategy):
     def run(self, data):
         d = data["ohlcv"]
 
+        last_trading_days = []
         if not self.date_fetched:
             start_date = '2024-01-01'
             end_date = '2024-12-31'
