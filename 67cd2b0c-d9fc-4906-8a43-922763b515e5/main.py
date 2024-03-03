@@ -23,31 +23,34 @@ class TradingStrategy(Strategy):
 
         return schedule.index.tolist()
 
-    def last_trading_days_of_months(self, start_date, end_date, exchange_name='NYSE'):
-        calendar = get_calendar(exchange_name)
+    def get_alloc_dates_for_nth_trading_day(self, timestamps, n):
+        _alloc_dates  = []
+        prev_month = pd.to_datetime(timestamps[0]).month
+        curr_month = None
+        eothm = None
+        day_counter = -32
+        for dt in timestamps:
+            day_counter = day_counter+1
+            ts = pd.to_datetime(dt)
+            curr_month = ts.month
+            if (n != 21) and day_counter == n:
+                _alloc_dates.append(ts)
+            if curr_month == prev_month:
+                eothm = ts 
+                continue
+            else:
+                prev_month = curr_month
+                day_counter = 1
+                if n == 21:
+                    _alloc_dates.append(eothm)
+                if n == 1:
+                    _alloc_dates.append(ts)
+            
     
-    # Generate all the dates between start_date and end_date
-        dates_range = pd.date_range(start=start_date, end=end_date, freq='B')  # 'B' frequency considers only business days
-    
-    # Iterate over each month and find the last trading day
-        last_trading_days = []
-        previous_month = None
-        for date in dates_range:
-            if previous_month != (date.year, date.month):
-            # If it's a new month, add the last trading day of the previous month
-                if previous_month is not None:
-                    last_trading_days.append(last_trading_day)
-            # Reset the last trading day for the new month
-                last_trading_day = None
-                previous_month = (date.year, date.month)
-        
-            if calendar.is_session(date):
-                last_trading_day = date
-    
-    # Add the last trading day of the last month
-        last_trading_days.append(last_trading_day)
-    
-        return last_trading_days
+        _alloc_dates = pd.DatetimeIndex(_alloc_dates)
+        return _alloc_dates
+
+
 
     def run(self, data):
         d = data["ohlcv"]
@@ -61,7 +64,7 @@ class TradingStrategy(Strategy):
         log('market_open_dates')
         log(str(market_open_dates))
 
-        last_trading_days = self.last_trading_days_of_months(start_date, end_date, exchange_name)
+        last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
 
         log('last trading dates')
         log(str(last_trading_days))
