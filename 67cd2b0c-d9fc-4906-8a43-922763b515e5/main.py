@@ -7,9 +7,8 @@ import pandas as pd
 class TradingStrategy(Strategy):
 
     def __init__(self):
+        self.date_fetched = False
         self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
-
-    self.date_fetched = False
 
     @property
     def interval(self):
