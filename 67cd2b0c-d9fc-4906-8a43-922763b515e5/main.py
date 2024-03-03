@@ -26,19 +26,26 @@ class TradingStrategy(Strategy):
     def last_trading_days_of_months(self, start_date, end_date, exchange_name='NYSE'):
         calendar = get_calendar(exchange_name)
     
-        # Generate all the dates between start_date and end_date
-        dates_range = pd.date_range(start=start_date, end=end_date, freq='D')
+    # Generate all the dates between start_date and end_date
+        dates_range = pd.date_range(start=start_date, end=end_date, freq='B')  # 'B' frequency considers only business days
     
-        # Iterate over each month and find the last trading day
+    # Iterate over each month and find the last trading day
         last_trading_days = []
-        for year_month in set((d.year, d.month) for d in dates_range):
-            # Get all the dates in the month
-            month_dates = calendar.month_dates(pd.Timestamp(year_month[0], year_month[1], 1))
-            # Filter out non-trading days
-            trading_dates = [date for date in month_dates if calendar.is_session(date)]
-            # Select the last trading day
-            last_trading_day = trading_dates[-1]
-            last_trading_days.append(last_trading_day)
+        previous_month = None
+        for date in dates_range:
+            if previous_month != (date.year, date.month):
+            # If it's a new month, add the last trading day of the previous month
+                if previous_month is not None:
+                    last_trading_days.append(last_trading_day)
+            # Reset the last trading day for the new month
+                last_trading_day = None
+                previous_month = (date.year, date.month)
+        
+            if calendar.is_session(date):
+                last_trading_day = date
+    
+    # Add the last trading day of the last month
+        last_trading_days.append(last_trading_day)
     
         return last_trading_days
 
