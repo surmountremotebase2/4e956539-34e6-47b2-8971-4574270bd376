@@ -16,7 +16,7 @@ class TradingStrategy(Strategy):
         return self.tickers
 
     @property
-    def get_market_open_dates(start_date, end_date, exchange_name='NYSE'):
+    def get_market_open_dates(self, start_date, end_date, exchange_name='NYSE'):
 
         calendar = get_calendar(exchange_name)
     
