@@ -144,4 +144,4 @@ class TradingStrategy(Strategy):
 
 
 
-        return TargetAllocation(currallocation_dict)
+        return TargetAllocation(curr_allocation_dict)
