@@ -81,14 +81,14 @@ class TradingStrategy(Strategy):
 
         return df, dates
 
-    def get_market_dates(self, start_date, end_date, exchange_name) {
-            if not self.date_fetched:
-                market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
-
-                last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
+    def get_market_dates(self, start_date, end_date, exchange_name):
         
-                self.date_fetched = True
-    }
+        market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
+
+        last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
+        
+        return market_open_dates, last_trading_days
+    
 
     def run(self, data):
         d = data["ohlcv"]
@@ -99,7 +99,9 @@ class TradingStrategy(Strategy):
         end_date = '2024-12-31'
         exchange_name = 'NYSE'
 
-        last_trading_days, market_open_dates = self.get_market_dates(start_date, end_date, exchange_name)
+        if not self.date_fetched:
+            last_trading_days, market_open_dates = self.get_market_dates(start_date, end_date, exchange_name)
+            self.date_fetched = True
 
         log('market_open_dates')
         log(str(market_open_dates))
