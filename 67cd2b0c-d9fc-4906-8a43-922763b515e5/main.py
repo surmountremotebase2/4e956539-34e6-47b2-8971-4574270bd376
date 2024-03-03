@@ -80,7 +80,7 @@ class TradingStrategy(Strategy):
         log(str(tickers))
 
         # Extracting dates and ticker values
-        dates = [entry['date'] for entry in d]
+        dates = [list(entry.values())[0]['date'] for entry in d]
 
         log(str(dates))
         ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
