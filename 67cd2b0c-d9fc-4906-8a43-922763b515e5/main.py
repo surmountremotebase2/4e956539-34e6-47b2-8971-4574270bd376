@@ -85,12 +85,10 @@ class TradingStrategy(Strategy):
 
     def get_market_dates(self, start_date, end_date, exchange_name):
         
-        market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
+        self.market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
-        last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
+        self.last_trading_days = self.get_alloc_dates_for_nth_trading_day(market_open_dates, 21)
         
-        return market_open_dates, last_trading_days
-    
 
     def run(self, data):
         d = data["ohlcv"]
@@ -102,14 +100,14 @@ class TradingStrategy(Strategy):
         exchange_name = 'NYSE'
 
         if not self.date_fetched:
-            market_open_dates, last_trading_days = self.get_market_dates(start_date, end_date, exchange_name)
+            self.get_market_dates(start_date, end_date, exchange_name)
             self.date_fetched = True
 
         log('market_open_dates')
-        log(str(market_open_dates))
+        log(str(self.market_open_dates))
 
         log('last trading dates')
-        log(str(last_trading_days))
+        log(str(self.last_trading_days))
 
         data_df, dates = self.get_data(d)
       
@@ -126,7 +124,7 @@ class TradingStrategy(Strategy):
         log('latest date: ')
         log(str(timestamp))
 
-        is_realloc_date = self.check_realloc_date(last_trading_days, timestamp)
+        is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
 
         log(str(is_realloc_date))
 
