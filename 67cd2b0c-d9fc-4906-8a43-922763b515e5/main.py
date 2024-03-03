@@ -54,7 +54,7 @@ class TradingStrategy(Strategy):
 
     def run(self, data):
         d = data["ohlcv"]
-        date_fetched = false
+        date_fetched = False
 
         if not date_fetched:
             start_date = '2024-01-01'
@@ -82,3 +82,5 @@ class TradingStrategy(Strategy):
             log('sell')
             allocation_dict = {"GOOGL": 0.2}
         return TargetAllocation(allocation_dict)
+
+
