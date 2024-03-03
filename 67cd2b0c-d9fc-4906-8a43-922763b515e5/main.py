@@ -79,7 +79,7 @@ class TradingStrategy(Strategy):
 
         df = pd.DataFrame(ticker_values, index=pd.to_datetime(dates))
 
-        return df
+        return df, dates
 
     def run(self, data):
         d = data["ohlcv"]
@@ -104,7 +104,7 @@ class TradingStrategy(Strategy):
             
         log(str(d))
 
-        data_df = self.get_data(d)
+        data_df, dates = self.get_data(d)
       
         log('data df: ')
         log(str(data_df))
