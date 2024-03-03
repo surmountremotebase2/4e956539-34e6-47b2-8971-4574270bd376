@@ -131,7 +131,7 @@ class TradingStrategy(Strategy):
 
         log(str(is_realloc_date))
 
-        curr_ret = returns[timestamp]
+        curr_ret = returns.loc[timestamp]
         log('curr_ret: ')
         log(str(curr_ret))
 
