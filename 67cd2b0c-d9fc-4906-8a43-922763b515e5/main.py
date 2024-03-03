@@ -97,7 +97,7 @@ class TradingStrategy(Strategy):
         log('df: ')
         log(str(df))
 
-        returns = calculate_return(df, days=2)
+        returns = self.calculate_return(df, days=2)
 
         log('return: ')
         log(str(returns))
