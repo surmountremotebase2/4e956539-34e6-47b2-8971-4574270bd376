@@ -155,6 +155,6 @@ class TradingStrategy(Strategy):
             return TargetAllocation({"SPY": 1})
             i=1
         else:
-            TargetAllocation({"SPY": 1})
+            log('out')
         
         
