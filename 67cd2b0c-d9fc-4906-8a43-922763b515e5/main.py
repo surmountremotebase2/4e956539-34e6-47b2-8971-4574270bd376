@@ -140,6 +140,9 @@ class TradingStrategy(Strategy):
             log(str(sum(pd.notna(curr_ret))))
             if sum(pd.notna(curr_ret)) >= 3:
                 log('inside if')
+                top_n = curr_ret.nlargest(3)
+                log('top 3 ret')
+                log(str(top_n))
             log('before allocation')
             log(str(curr_allocation_dict))
             log(str(self.prev_allocation_dict))
