@@ -72,11 +72,11 @@ class TradingStrategy(Strategy):
     def get_data(self, data):
         tickers = list(data[0].keys())
 
-        log(str(tickers))
+        # log(str(tickers))
 
         dates = [list(entry.values())[0]['date'] for entry in data]
 
-        log(str(dates))
+        # log(str(dates))
 
         ticker_values = {ticker: [entry[ticker]['close'] for entry in data] for ticker in tickers}
 
@@ -97,7 +97,7 @@ class TradingStrategy(Strategy):
 
         # log(str(d))
 
-        start_date = '2024-02-05'
+        start_date = '2023-02-05'
         end_date = '2024-12-31'
         exchange_name = 'NYSE'
 
@@ -140,8 +140,5 @@ class TradingStrategy(Strategy):
             log('after allocation')
             log(str(self.prev_allocation_dict))
             log(str(curr_allocation_dict))
-            
-
-
 
         return TargetAllocation(curr_allocation_dict)
