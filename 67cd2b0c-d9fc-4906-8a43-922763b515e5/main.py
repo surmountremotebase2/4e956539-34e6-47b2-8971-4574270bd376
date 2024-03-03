@@ -97,7 +97,7 @@ class TradingStrategy(Strategy):
 
         # log(str(d))
 
-        start_date = '2023-02-05'
+        start_date = '2015-02-05'
         end_date = '2024-12-31'
         exchange_name = 'NYSE'
 
@@ -116,7 +116,7 @@ class TradingStrategy(Strategy):
         # log('data df: ')
         # log(str(data_df))
 
-        returns = self.calculate_return(data_df, days=2)
+        returns = self.calculate_return(data_df, days=28)
 
         returns = returns.drop(columns=['SPY'])
 
