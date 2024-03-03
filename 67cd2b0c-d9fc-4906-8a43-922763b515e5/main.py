@@ -119,7 +119,7 @@ class TradingStrategy(Strategy):
         log('latest date: ')
         log(str(timestamp))
 
-        # is_realloc_date = self.check_realloc_date(timestamp, timestamp)
+        # is_realloc_date = self.check_realloc_date(last_trading_days, timestamp)
 
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
