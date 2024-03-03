@@ -131,7 +131,16 @@ class TradingStrategy(Strategy):
         log(str(is_realloc_date))
 
         if is_realloc_date:
-            allocation_dict = {i: 0 for i in self.tickers}
+            log('before allocation')
+            log(str(self.prev_allocation_dict))
+
+            curr_allocation_dict = {i: 0/len(self.tickers) for i in self.tickers}
+
+            prev_allocation_dict = curr_allocation_dict
+            log('after allocation')
+            log(str(prev_allocation_dict))
+            log(str(curr_allocation_dict))
+            
 
 
 
