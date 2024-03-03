@@ -77,6 +77,8 @@ class TradingStrategy(Strategy):
 
         tickers = list(d[0].keys())
 
+        log(str(tickers))
+
         # Extracting dates and ticker values
         dates = [entry['date'] for entry in d]
         ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
