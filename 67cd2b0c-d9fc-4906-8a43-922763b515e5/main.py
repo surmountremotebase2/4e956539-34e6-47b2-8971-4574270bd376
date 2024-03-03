@@ -142,7 +142,7 @@ class TradingStrategy(Strategy):
 
             log('before allocation')
             log(str(curr_allocation_dict))
-            log(str(self.prev_allocation_dict))
+            # log(str(self.prev_allocation_dict))
 
             if sum(pd.notna(curr_ret)) >= 3:
                 log('inside if')
@@ -154,10 +154,10 @@ class TradingStrategy(Strategy):
                 for key in top_n.index:
                     curr_allocation_dict[key] = 1 / total_keys
                 
-                self.prev_allocation_dict = curr_allocation_dict
+                # self.prev_allocation_dict = curr_allocation_dict
                 log('after allocation')
                 log(str(curr_allocation_dict))
-                log(str(self.prev_allocation_dict))
+                # log(str(self.prev_allocation_dict))
 
                 return TargetAllocation(curr_allocation_dict)
 
