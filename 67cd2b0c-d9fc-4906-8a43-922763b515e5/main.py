@@ -154,7 +154,7 @@ class TradingStrategy(Strategy):
         if i == 0:
             return TargetAllocation({"SPY": 1})
             i=1
-        else 
+        else:
             TargetAllocation({"SPY": 1})
         
         
