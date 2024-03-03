@@ -43,10 +43,12 @@ class TradingStrategy(Strategy):
 
         market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
+        log(market_open_dates)
         log(str(market_open_dates))
 
-        last_trading_days = last_trading_days_of_months(start_date, end_date, exchange_name)
+        last_trading_days = self.last_trading_days_of_months(start_date, end_date, exchange_name)
 
+        log('last trading dates')
         log(str(last_trading_days))
         
         log(str(d[-1]))
