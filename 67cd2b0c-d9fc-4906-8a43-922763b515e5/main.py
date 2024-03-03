@@ -22,7 +22,7 @@ class TradingStrategy(Strategy):
 
         return schedule.index.tolist()
 
-    def last_trading_days_of_months(start_date, end_date, exchange_name='NYSE'):
+    def last_trading_days_of_months(self, start_date, end_date, exchange_name='NYSE'):
         calendar = get_calendar(exchange_name)
         dates_range = pd.date_range(start=start_date, end=end_date, freq='D')
 
