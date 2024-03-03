@@ -86,7 +86,7 @@ class TradingStrategy(Strategy):
 
         last_trading_days = []
         if not self.date_fetched:
-            start_date = '2024-01-01'
+            start_date = '2024-02-05'
             end_date = '2024-12-31'
             exchange_name = 'NYSE'
 
