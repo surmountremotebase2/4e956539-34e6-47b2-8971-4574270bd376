@@ -81,6 +81,8 @@ class TradingStrategy(Strategy):
 
         # Extracting dates and ticker values
         dates = [entry['date'] for entry in d]
+
+        log(str(dates))
         ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
 
         # Converting to DataFrame
