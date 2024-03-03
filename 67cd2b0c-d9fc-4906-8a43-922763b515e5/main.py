@@ -60,7 +60,7 @@ class TradingStrategy(Strategy):
         res = res.ffill(axis=0)
         return res
 
-    def check_realloc_date(self, realloc_dates, timestamp, timestamp_next):
+    def check_realloc_date(self, realloc_dates, timestamp):
         if timestamp in realloc_dates:
             return True
         else:
@@ -112,7 +112,7 @@ class TradingStrategy(Strategy):
         log('latest date: ')
         log(str(timestamp))
 
-        is_realloc_date = self.check_realloc_date(timestamp, timestamp, timestamp_next)
+        # is_realloc_date = self.check_realloc_date(timestamp, timestamp)
 
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
