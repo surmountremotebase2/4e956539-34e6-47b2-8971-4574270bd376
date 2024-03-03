@@ -148,5 +148,7 @@ class TradingStrategy(Strategy):
         #     log(str(curr_allocation_dict))
         #     log(str(self.prev_allocation_dict))
             # return TargetAllocation(self.prev_allocation_dict)
+        log('allocation')
+        log(str(curr_allocation_dict))
         TargetAllocation(curr_allocation_dict)
         
