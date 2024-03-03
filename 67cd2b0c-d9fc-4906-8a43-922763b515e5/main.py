@@ -92,7 +92,7 @@ class TradingStrategy(Strategy):
         
 
     def run(self, data):
-        curr_allocation_dict = {i: 0 for i in self.tickers}
+        curr_allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
         d = data["ohlcv"]
 
         # log(str(d))
