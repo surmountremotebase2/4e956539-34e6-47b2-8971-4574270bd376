@@ -99,6 +99,9 @@ class TradingStrategy(Strategy):
         end_date = '2024-12-31'
         exchange_name = 'NYSE'
 
+        last_trading_days = None
+        market_open_dates = None
+
         if not self.date_fetched:
             last_trading_days, market_open_dates = self.get_market_dates(start_date, end_date, exchange_name)
             self.date_fetched = True
