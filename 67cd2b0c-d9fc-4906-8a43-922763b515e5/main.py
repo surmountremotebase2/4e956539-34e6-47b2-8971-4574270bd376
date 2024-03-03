@@ -66,6 +66,23 @@ class TradingStrategy(Strategy):
         else:
             return False
 
+    def get_data(self, data):
+        data_df = self.get_data(d)
+
+        tickers = list(d[0].keys())
+
+        log(str(tickers))
+
+        dates = [list(entry.values())[0]['date'] for entry in d]
+
+        log(str(dates))
+
+        ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
+
+        df = pd.DataFrame(ticker_values, index=pd.to_datetime(dates))
+
+        return df
+
     def run(self, data):
         d = data["ohlcv"]
 
@@ -88,20 +105,10 @@ class TradingStrategy(Strategy):
             
         log(str(d))
 
-        tickers = list(d[0].keys())
+        data_df = self.get_data(d)
 
-        log(str(tickers))
-
-        dates = [list(entry.values())[0]['date'] for entry in d]
-
-        log(str(dates))
-        ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
-
-        # Converting to DataFrame
-        df = pd.DataFrame(ticker_values, index=pd.to_datetime(dates))
-
-        log('df: ')
-        log(str(df))
+        log('data df: ')
+        log(str(data_df))
 
         returns = self.calculate_return(df, days=2)
 
@@ -109,6 +116,7 @@ class TradingStrategy(Strategy):
         log(str(returns))
 
         timestamp = dates[-1]
+        
         log('latest date: ')
         log(str(timestamp))
 
