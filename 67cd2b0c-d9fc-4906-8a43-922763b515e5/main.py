@@ -32,7 +32,7 @@ class TradingStrategy(Strategy):
         end_date = '2024-12-31'
         exchange_name = 'NYSE'
 
-        market_open_dates = get_market_open_dates(start_date, end_date, exchange_name)
+        market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
         log(market_open_dates)
         log(str(d[-1]))
