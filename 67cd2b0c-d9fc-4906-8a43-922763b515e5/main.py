@@ -95,7 +95,7 @@ class TradingStrategy(Strategy):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
-        log(str(d))
+        # log(str(d))
 
         start_date = '2024-02-05'
         end_date = '2024-12-31'
@@ -105,11 +105,11 @@ class TradingStrategy(Strategy):
             self.get_market_dates(start_date, end_date, exchange_name)
             self.date_fetched = True
 
-        log('market_open_dates')
-        log(str(self.market_open_dates))
+        # log('market_open_dates')
+        # log(str(self.market_open_dates))
 
-        log('last trading dates')
-        log(str(self.last_trading_days))
+        # log('last trading dates')
+        # log(str(self.last_trading_days))
 
         data_df, dates = self.get_data(d)
       
@@ -134,9 +134,9 @@ class TradingStrategy(Strategy):
             log('before allocation')
             log(str(self.prev_allocation_dict))
 
-            curr_allocation_dict = {i: 0/len(self.tickers) for i in self.tickers}
+            curr_allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
             self.prev_allocation_dict = curr_allocation_dict
-            
+
             log('after allocation')
             log(str(self.prev_allocation_dict))
             log(str(curr_allocation_dict))
