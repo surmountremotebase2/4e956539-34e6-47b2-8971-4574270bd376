@@ -10,7 +10,7 @@ class TradingStrategy(Strategy):
         self.last_trading_days = None
         self.market_open_dates = None
         self.date_fetched = False
-        self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB", "SPY"]
+        self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
         self.prev_allocation_dict = {i: 0 for i in self.tickers}
 
     @property
@@ -92,7 +92,7 @@ class TradingStrategy(Strategy):
         
 
     def run(self, data):
-        curr_allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
+        curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
         # log(str(d))
@@ -135,7 +135,7 @@ class TradingStrategy(Strategy):
             log(str(curr_allocation_dict))
             log(str(self.prev_allocation_dict))
 
-            curr_allocation_dict = {i: 1/len(self.tickers) for i in self.tickers}
+            
             self.prev_allocation_dict = curr_allocation_dict
 
             log('after allocation')
