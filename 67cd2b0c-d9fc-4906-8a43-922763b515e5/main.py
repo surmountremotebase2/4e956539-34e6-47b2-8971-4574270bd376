@@ -143,18 +143,12 @@ class TradingStrategy(Strategy):
                 top_n = curr_ret.nlargest(3)
                 log('top 3 ret')
                 log(str(top_n))
-            log('before allocation')
-            log(str(curr_allocation_dict))
-            log(str(self.prev_allocation_dict))
 
-            
-            self.prev_allocation_dict = curr_allocation_dict
+                total_keys = len(top_n)
+                for key in top_n.index:
+                    curr_allocation_dict[key] = 1 / total_keys
 
-            log('after allocation')
-            log(str(curr_allocation_dict))
-            log(str(self.prev_allocation_dict))
-
-            return TargetAllocation(curr_allocation_dict)
+                return TargetAllocation(curr_allocation_dict)
 
         
         
