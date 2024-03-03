@@ -10,7 +10,7 @@ class TradingStrategy(Strategy):
         self.last_trading_days = None
         self.market_open_dates = None
         self.date_fetched = False
-        self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
+        self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB", "SPY"]
         self.prev_allocation_dict = {i: 0 for i in self.tickers}
 
     @property
@@ -150,5 +150,5 @@ class TradingStrategy(Strategy):
         #     return TargetAllocation(self.prev_allocation_dict)
         # log('allocation')
         # log(str(curr_allocation_dict))
-        return TargetAllocation({'XLP': 1})
+        return TargetAllocation({"SPY": 1})
         
