@@ -18,14 +18,14 @@ class TradingStrategy(Strategy):
     def assets(self):
         return self.tickers
 
-    @property()
+    @property
     def get_market_open_dates(self, start_date, end_date, exchange_name='NYSE'):
         calendar = get_calendar(exchange_name)
         schedule = calendar.schedule(start_date=start_date, end_date=end_date)
 
         return schedule.index.tolist()
 
-    @property()
+    @property
     def get_alloc_dates_for_nth_trading_day(self, timestamps, n):
         _alloc_dates  = []
         prev_month = pd.to_datetime(timestamps[0]).month
