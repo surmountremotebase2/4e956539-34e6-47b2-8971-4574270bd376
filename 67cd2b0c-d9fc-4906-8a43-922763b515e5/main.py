@@ -74,6 +74,17 @@ class TradingStrategy(Strategy):
             self.date_fetched = True
             
         log(str(d))
+
+        tickers = list(d[0].keys())
+
+        # Extracting dates and ticker values
+        dates = [entry[ticker]['date'] for entry in d]
+        ticker_values = {ticker: [entry[ticker]['close'] for entry in d] for ticker in tickers}
+
+        # Converting to DataFrame
+        df = pd.DataFrame(ticker_values, index=pd.to_datetime(dates))
+
+
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
             log('buy') 
