@@ -51,7 +51,14 @@ class TradingStrategy(Strategy):
         _alloc_dates = pd.DatetimeIndex(_alloc_dates)
         return _alloc_dates
 
-
+    def calculate_return(self, price_mx, days=21):
+        tkrs = price_mx.columns
+        res = pd.DataFrame(data=None, index=price_mx.index, columns=price_mx.columns)
+        for tkr in tkrs:
+            ts = price_mx.loc[~price_mx[tkr].isna(), tkr]
+            res[tkr] = ts.pct_change(periods=days)
+        res = res.ffill(axis=0)
+        return res
 
     def run(self, data):
         d = data["ohlcv"]
@@ -79,7 +86,6 @@ class TradingStrategy(Strategy):
 
         log(str(tickers))
 
-        # Extracting dates and ticker values
         dates = [list(entry.values())[0]['date'] for entry in d]
 
         log(str(dates))
@@ -90,6 +96,11 @@ class TradingStrategy(Strategy):
 
         log('df: ')
         log(str(df))
+
+        returns = calculate_return(df, days=2)
+
+        log('return: ')
+        log(str(returns))
 
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
