@@ -113,50 +113,50 @@ class TradingStrategy(Strategy):
 
         data_df, dates = self.get_data(d)
       
-        log('data df: ')
-        log(str(data_df))
+        # log('data df: ')
+        # log(str(data_df))
 
         returns = self.calculate_return(data_df, days=2)
 
         returns = returns.drop(columns=['SPY'])
 
-        log('return: ')
-        log(str(returns))
+        # log('return: ')
+        # log(str(returns))
 
         timestamp = dates[-1]
         
-        log('latest date: ')
-        log(str(timestamp))
+        # log('latest date: ')
+        # log(str(timestamp))
 
         is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
 
         log(str(is_realloc_date))
 
 
-        if not is_realloc_date:
+        if is_realloc_date:
             curr_ret = returns.loc[timestamp]
-            log('curr_ret: ')
-            log(str(curr_ret))
-            log('curr ret count: ')
-            log(str(sum(pd.notna(curr_ret))))
+            # log('curr_ret: ')
+            # log(str(curr_ret))
+            # log('curr ret count: ')
+            # log(str(sum(pd.notna(curr_ret))))
 
-            log('before allocation')
-            log(str(curr_allocation_dict))
+            # log('before allocation')
+            # log(str(curr_allocation_dict))
             # log(str(self.prev_allocation_dict))
 
             if sum(pd.notna(curr_ret)) >= 3:
-                log('inside if')
+                # log('inside if')
                 top_n = curr_ret.nlargest(3)
-                log('top 3 ret')
-                log(str(top_n))
+                # log('top 3 ret')
+                # log(str(top_n))
 
                 total_keys = len(top_n)
                 for key in top_n.index:
                     curr_allocation_dict[key] = 1 / total_keys
                 
                 # self.prev_allocation_dict = curr_allocation_dict
-                log('after allocation')
-                log(str(curr_allocation_dict))
+                # log('after allocation')
+                # log(str(curr_allocation_dict))
                 # log(str(self.prev_allocation_dict))
 
                 return TargetAllocation(curr_allocation_dict)
