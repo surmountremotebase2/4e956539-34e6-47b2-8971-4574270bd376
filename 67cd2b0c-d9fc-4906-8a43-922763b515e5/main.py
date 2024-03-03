@@ -34,7 +34,7 @@ class TradingStrategy(Strategy):
 
         market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
-        log(market_open_dates)
+        log(str(market_open_dates))
         log(str(d[-1]))
         allocation_dict = {i: 0 for i in self.tickers}
         if len(d) % 2 == 1:  
