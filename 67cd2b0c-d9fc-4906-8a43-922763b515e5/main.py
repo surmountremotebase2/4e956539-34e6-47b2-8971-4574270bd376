@@ -43,7 +43,7 @@ class TradingStrategy(Strategy):
 
         market_open_dates = self.get_market_open_dates(start_date, end_date, exchange_name)
 
-        log(market_open_dates)
+        log('market_open_dates')
         log(str(market_open_dates))
 
         last_trading_days = self.last_trading_days_of_months(start_date, end_date, exchange_name)
@@ -60,5 +60,3 @@ class TradingStrategy(Strategy):
             log('sell')
             allocation_dict = {"GOOGL": 0.2}
         return TargetAllocation(allocation_dict)
-
-
