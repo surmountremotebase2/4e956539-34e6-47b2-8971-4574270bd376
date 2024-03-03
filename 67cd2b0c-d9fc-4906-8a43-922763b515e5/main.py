@@ -118,6 +118,7 @@ class TradingStrategy(Strategy):
 
         returns = self.calculate_return(data_df, days=2)
 
+
         # log('return: ')
         # log(str(returns))
 
@@ -129,6 +130,10 @@ class TradingStrategy(Strategy):
         is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
 
         log(str(is_realloc_date))
+
+        curr_ret = returns[timestamp]
+        log('curr_ret: ')
+        log(str(curr_ret))
 
         if not is_realloc_date:
             log('before allocation')
