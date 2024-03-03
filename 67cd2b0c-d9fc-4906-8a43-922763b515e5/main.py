@@ -118,6 +118,7 @@ class TradingStrategy(Strategy):
 
         returns = self.calculate_return(data_df, days=2)
 
+        return = return.drop(columns=['SPY'])
 
         log('return: ')
         log(str(returns))
@@ -159,3 +160,6 @@ class TradingStrategy(Strategy):
                 log(str(self.prev_allocation_dict))
 
                 return TargetAllocation(curr_allocation_dict)
+
+        
+        
