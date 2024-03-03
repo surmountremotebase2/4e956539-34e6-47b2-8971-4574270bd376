@@ -119,8 +119,8 @@ class TradingStrategy(Strategy):
         returns = self.calculate_return(data_df, days=2)
 
 
-        # log('return: ')
-        # log(str(returns))
+        log('return: ')
+        log(str(returns))
 
         timestamp = dates[-1]
         
