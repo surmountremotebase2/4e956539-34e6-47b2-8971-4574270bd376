@@ -7,7 +7,7 @@ import pandas as pd
 class TradingStrategy(Strategy):
 
     def __init__(self):
-        self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
+        self.tickers = ["GOOGL"]
         self.prev_allocation_dict = {i: 0 for i in self.tickers}
 
     @property
@@ -28,10 +28,11 @@ class TradingStrategy(Strategy):
 
         i = 0
         if i == 0:
-            return TargetAllocation({"XLP": 1})
+            return TargetAllocation({"GOOGL": 1})
             i = 1
         else:
-            return TargetAllocation(data["holdings"])
+            # return TargetAllocation(data["holdings"])
+            return TargetAllocation({"GOOGL": 1})
 
 
 
