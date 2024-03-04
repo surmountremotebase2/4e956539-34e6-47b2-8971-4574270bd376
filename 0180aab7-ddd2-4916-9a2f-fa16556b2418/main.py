@@ -29,10 +29,10 @@ class TradingStrategy(Strategy):
 
         i = 0
         if i == 0:
-            return TargetAllocation({"GOOGL": 1})
             i = 1
+            return TargetAllocation({"GOOGL": 1})       
         else:
-            return TargetAllocation({"GOOGL": 0})
+            return TargetAllocation({"GOOGL": 1-data["holdings"]["GOOGL"]})
             # return TargetAllocation({"GOOGL": 1})
 
 
