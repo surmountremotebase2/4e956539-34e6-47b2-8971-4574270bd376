@@ -30,7 +30,7 @@ class TradingStrategy(Strategy):
 
         
         if self.i == 0:
-            i = 1
+            self.i = 1
             log('if')
             log(str(i))
             return TargetAllocation({"GOOGL": 1})       
