@@ -156,8 +156,8 @@ class TradingStrategy(Strategy):
                     for key in top_n.index:
                         curr_allocation_dict[key] = 1 / total_keys
 
-                    for key, value in my_dict.items():
-                        print(key, value)
+                    # for key, value in my_dict.items():
+                    #     print(key, value)
                     
                     # self.prev_allocation_dict = curr_allocation_dict
                     # log('after allocation')
@@ -165,6 +165,3 @@ class TradingStrategy(Strategy):
                     # log(str(self.prev_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
-
-        
-        
