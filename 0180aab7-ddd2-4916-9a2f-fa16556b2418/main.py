@@ -29,14 +29,24 @@ class TradingStrategy(Strategy):
         log(str(d))
 
         
-        if self.i % 2 == 0:
+        if self.i % 3 == 0:
             self.i = self.i+1
             log('if')
            
             return TargetAllocation({"GOOGL": .2, "AAPL": .3, "MSFT": .5})       
+        elif self.i % 3 == 1:
+            self.i = self.i+1
+            log('elif')
+            
+            return TargetAllocation({"GOOGL": 0, "AAPL": .3, "MSFT": .5})
+            # return TargetAllocation({"GOOGL": 1})
         else:
             self.i = self.i+1
             log('else')
             
-            return TargetAllocation({"GOOGL": 0, "AAPL": 0, "MSFT": 0})
+            return TargetAllocation({"GOOGL": 0, "AAPL": .3, "MSFT": 0})
             # return TargetAllocation({"GOOGL": 1})
+
+
+        
+        
