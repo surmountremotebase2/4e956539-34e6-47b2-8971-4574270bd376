@@ -111,14 +111,19 @@ class TradingStrategy(Strategy):
             return cov
 
     def round_weights(weights, thresh=0.02):
-        # weights is a pandas Series, with tickers as index and weights (summing to 1) as values
-        # weights = pd.Series({'a':0.01, 'b':0.10, 'c':0.5, 'd':0.005, 'e':0.385})
-        weights = weights.copy() / weights.sum()  # make sure it sums to 1.0
+        weights = weights.copy() / weights.sum()
+        
+        # Identify weights below the threshold
         ix = weights < thresh
+        
+        # Calculate adjustment for weights below the threshold
         adj = sum(weights[ix]) * weights[~ix] / weights[~ix].sum()
+        
+        # Initialize output series with zeros
         out = pd.Series(index=weights.index, data=0.0)
+        
+        # Assign adjusted weights to the output series
         out[~ix] = weights[~ix] + adj
-        return out
 
     def run(self, data):
         curr_allocation_dict = {i: 0 for i in self.tickers}
