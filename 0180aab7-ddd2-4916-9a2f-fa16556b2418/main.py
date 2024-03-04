@@ -7,6 +7,7 @@ import pandas as pd
 class TradingStrategy(Strategy):
 
     def __init__(self):
+        self.i = 0
         self.tickers = ["GOOGL"]
         self.prev_allocation_dict = {i: 0 for i in self.tickers}
 
@@ -27,8 +28,8 @@ class TradingStrategy(Strategy):
         log(str(data["holdings"]))
         log(str(d))
 
-        i = 0
-        if i == 0:
+        
+        if self.i == 0:
             i = 1
             log('if')
             log(str(i))
