@@ -90,13 +90,29 @@ class TradingStrategy(Strategy):
 
         self.last_trading_days = self.get_alloc_dates_for_nth_trading_day(self.market_open_dates, 21)
         
+    def AAA_covariance(self, price_df, timestamp, symbols, method=None):
+        ncor = 126  # days back for correlation calc
+        nvol = 20   # days back for volatility calc
+        ix = price_df.index.get_loc(timestamp)
+        if ix < ncor + 1:
+            return None
+        else:
+            df = price_df[symbols].iloc[ix-ncor-1:ix]  # 6 months PRICE history for symbols of interest
+            ret = df.pct_change().iloc[1:]  # 6 months RETURNS history
+            if method is None:
+                corr = ret.corr()
+                vol = ret.iloc[-nvol:].std()
+                cov = corr * np.outer(vol, vol)
+            else:  # pass mode argument to pypfopt
+                cov = pypfopt.risk_models.risk_matrix(df, method=method)
+            return cov
 
     def run(self, data):
         curr_allocation_dict = {i: 0 for i in self.tickers}
 
         d = data["ohlcv"]
     
-        log(str(data["holdings"]))
+        # log(str(data["holdings"]))
 
         if len(d) != 0:
             start_date = '2015-02-05'
@@ -118,7 +134,7 @@ class TradingStrategy(Strategy):
             # log('data df: ')
             # log(str(data_df))
 
-            returns = self.calculate_return(data_df, days=28)
+            returns = self.calculate_return(data_df, days=126)
 
             returns = returns.drop(columns=['SPY'])
 
@@ -128,11 +144,11 @@ class TradingStrategy(Strategy):
             timestamp = dates[-1]
             
             # log('latest date: ')
-            # log(str(timestamp))
+            
 
             is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
 
-            log(str(is_realloc_date))
+            # log(str(is_realloc_date))
 
 
             if is_realloc_date:
@@ -146,15 +162,24 @@ class TradingStrategy(Strategy):
                 # log(str(curr_allocation_dict))
                 # log(str(self.prev_allocation_dict))
 
-                if sum(pd.notna(curr_ret)) >= 3:
+                if sum(pd.notna(curr_ret)) >= 5:
+                    # log(str(timestamp))
                     # log('inside if')
-                    top_n = curr_ret.nlargest(3)
+                    top_n = curr_ret.nlargest(5)
                     # log('top 3 ret')
                     # log(str(top_n))
 
                     total_keys = len(top_n)
                     for key in top_n.index:
                         curr_allocation_dict[key] = 1 / total_keys
+
+                    # if cov_mx is not None:
+                    #     ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
+                    #     if param.l2_reg_gamma is not None:
+                    #         ef.add_objective(pypfopt.objective_functions.L2_reg, gamma=param.l2_reg_gamma)
+                    #     ef.min_volatility()
+                    
+                        # weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
 
                     # for key, value in my_dict.items():
                     #     print(key, value)
