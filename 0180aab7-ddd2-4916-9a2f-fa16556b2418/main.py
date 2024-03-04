@@ -8,7 +8,7 @@ class TradingStrategy(Strategy):
 
     def __init__(self):
         self.i = 0
-        self.tickers = ["GOOGL"]
+        self.tickers = ["GOOGL", "AAPL", "MSFT"]
         self.prev_allocation_dict = {i: 0 for i in self.tickers}
 
     @property
@@ -33,12 +33,12 @@ class TradingStrategy(Strategy):
             self.i = self.i+1
             log('if')
            
-            return TargetAllocation({"GOOGL": 1})       
+            return TargetAllocation({"GOOGL": 1, "AAPL": 1, "MSFT": 1})       
         else:
             self.i = self.i+1
             log('else')
             
-            return TargetAllocation({"GOOGL": 0})
+            return TargetAllocation({"GOOGL": 0, "AAPL": 0, "MSFT": 0})
             # return TargetAllocation({"GOOGL": 1})
 
 
