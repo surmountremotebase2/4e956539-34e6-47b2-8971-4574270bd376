@@ -95,7 +95,7 @@ class TradingStrategy(Strategy):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
-        # log(str(d))
+        log(str(data))
 
         start_date = '2015-02-05'
         end_date = '2024-12-31'
