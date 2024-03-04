@@ -134,7 +134,7 @@ class TradingStrategy(Strategy):
             # log('data df: ')
             # log(str(data_df))
 
-            returns = self.calculate_return(data_df, days=250)
+            returns = self.calculate_return(data_df, days=126)
 
             returns = returns.drop(columns=['SPY'])
 
