@@ -173,6 +173,11 @@ class TradingStrategy(Strategy):
                     for key in top_n.index:
                         curr_allocation_dict[key] = 1 / total_keys
 
+                    cov_mx = self.AAA_covariance(data_df, timestamp, symbols=self.tickers,
+                                        method=None)
+
+                    log('cov_mx')
+                    log(str(cov_mx))
                     # if cov_mx is not None:
                     #     ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
                     #     if param.l2_reg_gamma is not None:
