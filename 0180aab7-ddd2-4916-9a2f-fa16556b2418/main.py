@@ -30,8 +30,10 @@ class TradingStrategy(Strategy):
         i = 0
         if i == 0:
             i = 1
+            log('if')
             return TargetAllocation({"GOOGL": 1})       
         else:
+            log('else')
             return TargetAllocation({"GOOGL": data["holdings"]["GOOGL"]})
             # return TargetAllocation({"GOOGL": 1})
 
