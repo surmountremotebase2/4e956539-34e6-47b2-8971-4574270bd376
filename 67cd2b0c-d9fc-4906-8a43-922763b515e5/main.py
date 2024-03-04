@@ -95,71 +95,73 @@ class TradingStrategy(Strategy):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
-        log(str(data))
+        log(str(d))
 
-        start_date = '2015-02-05'
-        end_date = '2024-12-31'
-        exchange_name = 'NYSE'
+        if len(d) != 0:
 
-        if not self.date_fetched:
-            self.get_market_dates(start_date, end_date, exchange_name)
-            self.date_fetched = True
+            start_date = '2015-02-05'
+            end_date = '2024-12-31'
+            exchange_name = 'NYSE'
 
-        # log('market_open_dates')
-        # log(str(self.market_open_dates))
+            if not self.date_fetched:
+                self.get_market_dates(start_date, end_date, exchange_name)
+                self.date_fetched = True
 
-        # log('last trading dates')
-        # log(str(self.last_trading_days))
+            # log('market_open_dates')
+            # log(str(self.market_open_dates))
 
-        data_df, dates = self.get_data(d)
-      
-        # log('data df: ')
-        # log(str(data_df))
+            # log('last trading dates')
+            # log(str(self.last_trading_days))
 
-        returns = self.calculate_return(data_df, days=28)
-
-        returns = returns.drop(columns=['SPY'])
-
-        # log('return: ')
-        # log(str(returns))
-
-        timestamp = dates[-1]
+            data_df, dates = self.get_data(d)
         
-        # log('latest date: ')
-        # log(str(timestamp))
+            # log('data df: ')
+            # log(str(data_df))
 
-        is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
+            returns = self.calculate_return(data_df, days=28)
 
-        log(str(is_realloc_date))
+            returns = returns.drop(columns=['SPY'])
+
+            # log('return: ')
+            # log(str(returns))
+
+            timestamp = dates[-1]
+            
+            # log('latest date: ')
+            # log(str(timestamp))
+
+            is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
+
+            log(str(is_realloc_date))
 
 
-        if is_realloc_date:
-            curr_ret = returns.loc[timestamp]
-            # log('curr_ret: ')
-            # log(str(curr_ret))
-            # log('curr ret count: ')
-            # log(str(sum(pd.notna(curr_ret))))
+            if is_realloc_date:
+                curr_ret = returns.loc[timestamp]
+                # log('curr_ret: ')
+                # log(str(curr_ret))
+                # log('curr ret count: ')
+                # log(str(sum(pd.notna(curr_ret))))
 
-            # log('before allocation')
-            # log(str(curr_allocation_dict))
-            # log(str(self.prev_allocation_dict))
-
-            if sum(pd.notna(curr_ret)) >= 3:
-                # log('inside if')
-                top_n = curr_ret.nlargest(3)
-                # log('top 3 ret')
-                # log(str(top_n))
-
-                total_keys = len(top_n)
-                for key in top_n.index:
-                    curr_allocation_dict[key] = 1 / total_keys
-                
-                # self.prev_allocation_dict = curr_allocation_dict
-                # log('after allocation')
+                # log('before allocation')
                 # log(str(curr_allocation_dict))
                 # log(str(self.prev_allocation_dict))
 
-                return TargetAllocation(curr_allocation_dict)
+                if sum(pd.notna(curr_ret)) >= 3:
+                    # log('inside if')
+                    top_n = curr_ret.nlargest(3)
+                    # log('top 3 ret')
+                    # log(str(top_n))
+
+                    total_keys = len(top_n)
+                    for key in top_n.index:
+                        curr_allocation_dict[key] = 1 / total_keys
+                    
+                    # self.prev_allocation_dict = curr_allocation_dict
+                    # log('after allocation')
+                    # log(str(curr_allocation_dict))
+                    # log(str(self.prev_allocation_dict))
+
+                    return TargetAllocation(curr_allocation_dict)
 
         
         
