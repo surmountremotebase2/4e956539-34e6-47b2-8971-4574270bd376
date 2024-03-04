@@ -33,15 +33,10 @@ class TradingStrategy(Strategy):
             self.i = self.i+1
             log('if')
            
-            return TargetAllocation({"GOOGL": 1, "AAPL": 1, "MSFT": 1})       
+            return TargetAllocation({"GOOGL": 2, "AAPL": 3, "MSFT": 5})       
         else:
             self.i = self.i+1
             log('else')
             
             return TargetAllocation({"GOOGL": 0, "AAPL": 0, "MSFT": 0})
             # return TargetAllocation({"GOOGL": 1})
-
-
-
-        
-        
