@@ -31,7 +31,7 @@ class TradingStrategy(Strategy):
             return TargetAllocation({"XLP": 1})
             i = 1
         else:
-            return TargetAllocation({"XLP": 1})
+            return TargetAllocation(data["holdings"])
 
 
 
