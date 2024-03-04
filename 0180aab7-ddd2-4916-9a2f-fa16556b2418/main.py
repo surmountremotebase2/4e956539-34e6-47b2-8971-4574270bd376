@@ -37,7 +37,7 @@ class TradingStrategy(Strategy):
         else:
             log('else')
             
-            return TargetAllocation({"GOOGL": data["holdings"]["GOOGL"]})
+            return TargetAllocation({"GOOGL": 1-data["holdings"]["GOOGL"]})
             # return TargetAllocation({"GOOGL": 1})
 
 
