@@ -4,8 +4,6 @@ from surmount.logging import log
 from pandas_market_calendars import get_calendar
 import pandas as pd
 import numpy as np
-import pypfopt
-
 
 
 class TradingStrategy(Strategy):
