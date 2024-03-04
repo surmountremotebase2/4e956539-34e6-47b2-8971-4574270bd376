@@ -95,10 +95,9 @@ class TradingStrategy(Strategy):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
     
-        log(str(data))
+        log(str(data["holdings"]))
 
         if len(d) != 0:
-
             start_date = '2015-02-05'
             end_date = '2024-12-31'
             exchange_name = 'NYSE'
@@ -162,3 +161,6 @@ class TradingStrategy(Strategy):
                     # log(str(self.prev_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
+
+        
+        
