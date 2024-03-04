@@ -24,7 +24,7 @@ class TradingStrategy(Strategy):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
-        # log(str(data))
+        log(str(data["holdings"]))
 
         i = 0
         if i == 0:
