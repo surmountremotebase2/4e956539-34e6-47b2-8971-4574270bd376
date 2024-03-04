@@ -29,13 +29,19 @@ class TradingStrategy(Strategy):
         log(str(d))
 
         
-        if self.i == 0:
-            self.i = 1
+        if self.i % 2 == 0:
+            self.i = self.i+1
             log('if')
            
             return TargetAllocation({"GOOGL": 1})       
         else:
+            self.i = self.i+1
             log('else')
             
             return TargetAllocation({"GOOGL": 0})
             # return TargetAllocation({"GOOGL": 1})
+
+
+
+        
+        
