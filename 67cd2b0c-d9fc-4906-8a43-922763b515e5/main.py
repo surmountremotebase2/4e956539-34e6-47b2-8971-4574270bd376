@@ -189,13 +189,16 @@ class TradingStrategy(Strategy):
                     
                         # weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
 
+                        tickers = cov_mx.index.tolist()
+
+                        # Calculate the inverse of the covariance matrix
                         cov_inv = np.linalg.inv(cov_mx)
 
                         # Define a vector of ones
-                        ones = np.ones(len(top_n))
+                        ones = np.ones((len(tickers), 1))
 
                         # Calculate the denominator of the weights formula
-                        denominator = ones.T.dot(cov_inv).dot(ones)
+                        denominator = ones.T.dot(cov_inv).dot(ones).item()
 
                         # Calculate the numerator of the weights formula
                         numerator = cov_inv.dot(ones)
@@ -204,7 +207,7 @@ class TradingStrategy(Strategy):
                         weights = numerator / denominator
 
                         # Round the weights
-                        weights = round_weights(pd.Series(index=top_n, data=weights))
+                        weights = round_weights(pd.Series(index=tickers, data=weights.flatten()))
                         log('weights: ')
                         log(str(weights))
                     # for key, value in my_dict.items():
