@@ -179,14 +179,16 @@ class TradingStrategy(Strategy):
 
                     log('cov_mx')
                     log(str(cov_mx))
-                    # if cov_mx is not None:
-                    #     ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
-                    #     if param.l2_reg_gamma is not None:
-                    #         ef.add_objective(pypfopt.objective_functions.L2_reg, gamma=param.l2_reg_gamma)
-                    #     ef.min_volatility()
+                    if cov_mx is not None:
+                        ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
+                        # if param.l2_reg_gamma is not None:
+                        #     ef.add_objective(pypfopt.objective_functions.L2_reg, gamma=param.l2_reg_gamma)
+                        ef.min_volatility()
                     
-                        # weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
+                        weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
 
+                        log('weights: ')
+                        log(str(weights))
                     # for key, value in my_dict.items():
                     #     print(key, value)
                     
