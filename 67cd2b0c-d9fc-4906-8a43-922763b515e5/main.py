@@ -106,6 +106,7 @@ class TradingStrategy(Strategy):
                 vol = ret.iloc[-nvol:].std()
                 cov = corr * np.outer(vol, vol)
             else:  # pass mode argument to pypfopt
+                log('pppppppppptopt')
                 cov = pypfopt.risk_models.risk_matrix(df, method=method)
             return cov
 
