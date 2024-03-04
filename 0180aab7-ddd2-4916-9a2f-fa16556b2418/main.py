@@ -24,7 +24,13 @@ class TradingStrategy(Strategy):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
 
-        log(str(data))
+        # log(str(data))
+
+        i = 0
+        if i == 0:
+            return TargetAllocation({"XLP": 1})
+        else:
+            return TargetAllocation({"XLP": 1})
 
 
 
