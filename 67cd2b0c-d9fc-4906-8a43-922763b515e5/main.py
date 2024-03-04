@@ -110,6 +110,16 @@ class TradingStrategy(Strategy):
                 cov = pypfopt.risk_models.risk_matrix(df, method=method)
             return cov
 
+    def round_weights(weights, thresh=0.02):
+        # weights is a pandas Series, with tickers as index and weights (summing to 1) as values
+        # weights = pd.Series({'a':0.01, 'b':0.10, 'c':0.5, 'd':0.005, 'e':0.385})
+        weights = weights.copy() / weights.sum()  # make sure it sums to 1.0
+        ix = weights < thresh
+        adj = sum(weights[ix]) * weights[~ix] / weights[~ix].sum()
+        out = pd.Series(index=weights.index, data=0.0)
+        out[~ix] = weights[~ix] + adj
+        return out
+
     def run(self, data):
         curr_allocation_dict = {i: 0 for i in self.tickers}
 
@@ -207,7 +217,7 @@ class TradingStrategy(Strategy):
                         weights = numerator / denominator
 
                         # Round the weights
-                        weights = round_weights(pd.Series(index=tickers, data=weights.flatten()))
+                        weights = self.round_weights(pd.Series(index=tickers, data=weights.flatten()))
                         log('weights: ')
                         log(str(weights))
                     # for key, value in my_dict.items():
