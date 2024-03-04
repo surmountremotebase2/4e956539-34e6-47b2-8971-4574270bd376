@@ -32,8 +32,8 @@ class TradingStrategy(Strategy):
             return TargetAllocation({"GOOGL": 1})
             i = 1
         else:
-            # return TargetAllocation(data["holdings"])
-            return TargetAllocation({"GOOGL": 1})
+            return TargetAllocation(data["holdings"])
+            # return TargetAllocation({"GOOGL": 1})
 
 
 
