@@ -94,8 +94,8 @@ class TradingStrategy(Strategy):
     def run(self, data):
         curr_allocation_dict = {i: 0 for i in self.tickers}
         d = data["ohlcv"]
-
-        log(str(d))
+    
+        log(str(data))
 
         if len(d) != 0:
 
@@ -162,6 +162,3 @@ class TradingStrategy(Strategy):
                     # log(str(self.prev_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
-
-        
-        
