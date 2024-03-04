@@ -4,7 +4,7 @@ from surmount.logging import log
 from pandas_market_calendars import get_calendar
 import pandas as pd
 import numpy as np
-import portfolio_cal as pc
+import pypfopt
 
 class TradingStrategy(Strategy):
 
