@@ -25,6 +25,7 @@ class TradingStrategy(Strategy):
         d = data["ohlcv"]
 
         log(str(data["holdings"]))
+        log(str(d))
 
         i = 0
         if i == 0:
