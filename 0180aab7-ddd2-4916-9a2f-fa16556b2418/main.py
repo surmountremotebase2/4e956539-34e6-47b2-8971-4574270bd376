@@ -32,11 +32,11 @@ class TradingStrategy(Strategy):
         if self.i == 0:
             self.i = 1
             log('if')
-            log(str(i))
+           
             return TargetAllocation({"GOOGL": 1})       
         else:
             log('else')
-            log(str(i))
+            
             return TargetAllocation({"GOOGL": data["holdings"]["GOOGL"]})
             # return TargetAllocation({"GOOGL": 1})
 
