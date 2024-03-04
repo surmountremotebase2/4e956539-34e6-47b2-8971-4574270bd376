@@ -29,7 +29,7 @@ class TradingStrategy(Strategy):
         i = 0
         if i == 0:
             return TargetAllocation({"XLP": 1})
-            i++
+            i = 1
         else:
             return TargetAllocation({"XLP": 1})
 
