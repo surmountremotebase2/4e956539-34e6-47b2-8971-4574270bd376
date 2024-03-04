@@ -184,13 +184,29 @@ class TradingStrategy(Strategy):
                     log('cov_mx')
                     log(str(cov_mx))
                     if cov_mx is not None:
-                        ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
-                        # if param.l2_reg_gamma is not None:
-                        #     ef.add_objective(pypfopt.objective_functions.L2_reg, gamma=param.l2_reg_gamma)
-                        ef.min_volatility()
+                        # ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
+                        # # if param.l2_reg_gamma is not None:
+                        # #     ef.add_objective(pypfopt.objective_functions.L2_reg, gamma=param.l2_reg_gamma)
+                        # ef.min_volatility()
                     
-                        weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
+                        # weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
 
+                        cov_inv = np.linalg.inv(cov_mx)
+
+                        # Define a vector of ones
+                        ones = np.ones(len(top_n))
+
+                        # Calculate the denominator of the weights formula
+                        denominator = ones.T.dot(cov_inv).dot(ones)
+
+                        # Calculate the numerator of the weights formula
+                        numerator = cov_inv.dot(ones)
+
+                        # Calculate the weights
+                        weights = numerator / denominator
+
+                        # Round the weights
+                        weights = round_weights(pd.Series(index=top_n, data=weights))
                         log('weights: ')
                         log(str(weights))
                     # for key, value in my_dict.items():
