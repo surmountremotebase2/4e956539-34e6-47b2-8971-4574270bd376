@@ -12,7 +12,7 @@ class TradingStrategy(Strategy):
         self.last_trading_days = None
         self.market_open_dates = None
         self.date_fetched = False
-        self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
+        self.tickers = ["SPY", "VGK", "EWJ", "EEM", "VNQ", "RWX", "IEF", "TLT", "DBC", "IAU"]
 
     @property
     def interval(self):
