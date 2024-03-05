@@ -213,4 +213,11 @@ class TradingStrategy(Strategy):
 
                     log(str(curr_allocation_dict))
 
+                    for key in curr_allocation_dict:
+                        if key in weights.index:
+                            curr_allocation_dict[key] = weights[key]
+                        else:
+                            curr_allocation_dict[key] = 0
+
+
                     return TargetAllocation(curr_allocation_dict)
