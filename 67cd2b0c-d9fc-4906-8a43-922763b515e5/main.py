@@ -209,14 +209,14 @@ class TradingStrategy(Strategy):
 
                     # log(str(curr_allocation_dict))
 
-                    # for key in curr_allocation_dict:
-                    #     if key in weights.index:
-                    #         curr_allocation_dict[key] = round(weights[key], 4)
-                    #     else:
-                    #         curr_allocation_dict[key] = 0
+                    for key in curr_allocation_dict:
+                        if key in weights.index:
+                            curr_allocation_dict[key] = weights[key]
+                        else:
+                            curr_allocation_dict[key] = 0
 
-                    curr_allocation_dict["XLY"] = .9
-                    curr_allocation_dict["XLE"] = .2
+                    # curr_allocation_dict["XLY"] = .9
+                    # curr_allocation_dict["XLE"] = .2
 
                     # log('after')
                     log(str(curr_allocation_dict))
