@@ -13,7 +13,6 @@ class TradingStrategy(Strategy):
         self.market_open_dates = None
         self.date_fetched = False
         self.tickers = ["XLP", "XLY", "XLE", "XLK", "XLV", "XLI", "XLC", "XLF", "XLU", "XLB"]
-        self.prev_allocation_dict = {i: 0 for i in self.tickers}
 
     @property
     def interval(self):
@@ -192,8 +191,6 @@ class TradingStrategy(Strategy):
                     # log(str(top_n))
 
                     total_keys = len(top_n)
-                    for key in top_n.index:
-                        curr_allocation_dict[key] = 1 / total_keys
 
                     cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
