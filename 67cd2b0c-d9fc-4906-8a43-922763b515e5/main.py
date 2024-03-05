@@ -221,14 +221,15 @@ class TradingStrategy(Strategy):
                         if key in weights.index:
                             curr_allocation_dict[key] = round(weights[key], 1)
 
+                    log('after')
                     for key in curr_allocation_dict:
                         log(str(curr_allocation_dict[key]))
                         log(str(type(curr_allocation_dict[key])))
-                        
+
                     # curr_allocation_dict["XLY"] = .9
                     # curr_allocation_dict["XLE"] = .2
 
-                    log('after')
+
                     log(str(type(curr_allocation_dict)))
                     log(str(curr_allocation_dict))
 
