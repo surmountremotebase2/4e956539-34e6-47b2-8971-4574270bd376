@@ -193,8 +193,8 @@ class TradingStrategy(Strategy):
 
                     cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
-                    # log('cov_mx')
-                    # log(str(cov_mx))
+                    log('cov_mx')
+                    log(str(cov_mx))
 
                     wts = self.calculate_weights(cov_mx)
 
@@ -204,8 +204,8 @@ class TradingStrategy(Strategy):
 
                     weights = self.round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
-                    # log('weights')
-                    # log(str(type(weights)))
+                    log('weights')
+                    log(str(type(weights)))
 
                     # log(str(curr_allocation_dict))
 
