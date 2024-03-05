@@ -105,7 +105,6 @@ class TradingStrategy(Strategy):
                 vol = ret.iloc[-nvol:].std()
                 cov = corr * np.outer(vol, vol)
             else:  # pass mode argument to pypfopt
-                log('pppppppppptopt')
                 cov = pypfopt.risk_models.risk_matrix(df, method=method)
             return cov
 
@@ -184,7 +183,7 @@ class TradingStrategy(Strategy):
                 # log(str(self.prev_allocation_dict))
 
                 if sum(pd.notna(curr_ret)) >= 3:
-                    log(str(timestamp))
+                    # log(str(timestamp))
                     # log('inside if')
                     top_n = curr_ret.nlargest(3)
                     # log('top 3 ret')
@@ -194,21 +193,21 @@ class TradingStrategy(Strategy):
 
                     cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
-                    log('cov_mx')
-                    log(str(cov_mx))
+                    # log('cov_mx')
+                    # log(str(cov_mx))
 
                     wts = self.calculate_weights(cov_mx)
 
-                    log(str(wts))
-                    log(str(type(wts)))
-                    log(str(type(top_n.index.values.tolist())))
+                    # log(str(wts))
+                    # log(str(type(wts)))
+                    # log(str(type(top_n.index.values.tolist())))
 
                     weights = self.round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
-                    log('weights')
-                    log(str(type(weights)))
+                    # log('weights')
+                    # log(str(type(weights)))
 
-                    log(str(curr_allocation_dict))
+                    # log(str(curr_allocation_dict))
 
                     for key in curr_allocation_dict:
                         if key in weights.index:
@@ -216,7 +215,7 @@ class TradingStrategy(Strategy):
                         else:
                             curr_allocation_dict[key] = 0
 
-                    log('after')
-                    log(str(curr_allocation_dict))
+                    # log('after')
+                    # log(str(curr_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
