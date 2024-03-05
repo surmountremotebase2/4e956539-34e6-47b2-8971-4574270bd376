@@ -149,7 +149,8 @@ class TradingStrategy(Strategy):
 
             # returns = returns.drop(columns=['SPY'])
 
-            timestamp = dates[-1]
+            timestamp = dates[-2]
+            timestamp_next = dates[-1]
     
             is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
 
@@ -165,7 +166,7 @@ class TradingStrategy(Strategy):
 
                     total_keys = len(top_n)
 
-                    cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
+                    cov_mx = self.AAA_covariance(data_df, timestamp_next, symbols=top_n.index.values,
                                         method=None)
 
 
