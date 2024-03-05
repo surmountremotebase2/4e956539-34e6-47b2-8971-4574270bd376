@@ -219,4 +219,4 @@ class TradingStrategy(Strategy):
                     log('after')
                     log(str(curr_allocation_dict))
 
-                    return TargetAllocation(curr_allocation_dict)
+                    return TargetAllocation({'XLP': 0, 'XLY': 0, 'XLE': 0.1, 'XLK': 0, 'XLV': 0, 'XLI': 0, 'XLC': 0, 'XLF': 0, 'XLU': 0.7, 'XLB': 0.2})
