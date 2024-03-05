@@ -209,8 +209,8 @@ class TradingStrategy(Strategy):
 
                     wts = self.calculate_weights(cov_mx)
 
-                    log(str(weights))
-                    log(str(type(weights)))
+                    log(str(wts))
+                    log(str(type(wts)))
                     log(str(type(top_n.index.values.to_list())))
 
                     weights = round_weights(pd.Series(index=top_n.index.values.to_list(), data=wts))
