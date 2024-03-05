@@ -219,5 +219,7 @@ class TradingStrategy(Strategy):
                         else:
                             curr_allocation_dict[key] = 0
 
+                    log('after')
+                    log(str(curr_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
