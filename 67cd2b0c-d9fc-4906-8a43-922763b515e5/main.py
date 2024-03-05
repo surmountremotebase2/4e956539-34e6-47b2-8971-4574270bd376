@@ -122,19 +122,12 @@ class TradingStrategy(Strategy):
     
         return weights
     def round_weights(weights, thresh=0.02):
-        weights = weights.copy() / weights.sum()
-        
-        # Identify weights below the threshold
+        weights = weights.copy() / weights.sum()  # make sure it sums to 1.0
         ix = weights < thresh
-        
-        # Calculate adjustment for weights below the threshold
         adj = sum(weights[ix]) * weights[~ix] / weights[~ix].sum()
-        
-        # Initialize output series with zeros
         out = pd.Series(index=weights.index, data=0.0)
-        
-        # Assign adjusted weights to the output series
         out[~ix] = weights[~ix] + adj
+        return out
 
     def run(self, data):
         curr_allocation_dict = {i: 0 for i in self.tickers}
