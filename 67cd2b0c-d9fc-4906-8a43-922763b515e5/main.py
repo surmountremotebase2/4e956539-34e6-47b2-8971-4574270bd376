@@ -110,6 +110,17 @@ class TradingStrategy(Strategy):
                 cov = pypfopt.risk_models.risk_matrix(df, method=method)
             return cov
 
+    def calculate_weights(self, cov_mx):
+        num_assets = cov_mx.shape[0]
+        ones = np.ones(num_assets)
+        cov_inv = np.linalg.inv(cov_mx)
+        
+        denominator = ones.dot(cov_inv).dot(ones)
+        numerator = cov_inv.dot(ones)
+        
+        weights = numerator / denominator
+    
+    return weights
     def round_weights(weights, thresh=0.02):
         weights = weights.copy() / weights.sum()
         
@@ -193,9 +204,15 @@ class TradingStrategy(Strategy):
 
                     cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
-
                     log('cov_mx')
                     log(str(cov_mx))
+
+                    weights = self.calculate_weights(cov_mx)
+
+                    log(str(weights))
+                    log(str(type(weights)))
+                    log(str(type(top_n.index.values)))
+                    
                     if cov_mx is not None:
                         # ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
                         # # if param.l2_reg_gamma is not None:
