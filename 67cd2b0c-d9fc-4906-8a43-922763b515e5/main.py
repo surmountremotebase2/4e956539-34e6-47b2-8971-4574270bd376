@@ -143,94 +143,41 @@ class TradingStrategy(Strategy):
                 self.get_market_dates(start_date, end_date, exchange_name)
                 self.date_fetched = True
 
-            # log('market_open_dates')
-            # log(str(self.market_open_dates))
-
-            # log('last trading dates')
-            # log(str(self.last_trading_days))
-
             data_df, dates = self.get_data(d)
-        
-            # log('data df: ')
-            # log(str(data_df))
 
             returns = self.calculate_return(data_df, days=126)
 
             returns = returns.drop(columns=['SPY'])
 
-            # log('return: ')
-            # log(str(returns))
-
             timestamp = dates[-1]
-            
-            # log('latest date: ')
-            
 
             is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
-
-            # log(str(is_realloc_date))
 
 
             if is_realloc_date:
                 curr_ret = returns.loc[timestamp]
-                # log('curr_ret: ')
-                # log(str(curr_ret))
-                # log('curr ret count: ')
-                # log(str(sum(pd.notna(curr_ret))))
 
-                # log('before allocation')
-                # log(str(curr_allocation_dict))
-                # log(str(self.prev_allocation_dict))
 
                 if sum(pd.notna(curr_ret)) >= 3:
-                    # log(str(timestamp))
-                    # log('inside if')
+
                     top_n = curr_ret.nlargest(3)
-                    # log('top 3 ret')
-                    # log(str(top_n))
+
 
                     total_keys = len(top_n)
 
                     cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
-                    log('cov_mx')
-                    log(str(cov_mx))
+
 
                     wts = self.calculate_weights(cov_mx)
 
-                    # log(str(wts))
-                    # log(str(type(wts)))
-                    # log(str(type(top_n.index.values.tolist())))
 
                     weights = self.round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
-                    log('weights')
-                    log(str(weights))
-
-                    # log(str(curr_allocation_dict))
-
-                    log('before')
-                    log(str(type(curr_allocation_dict)))
-                    log(str(curr_allocation_dict))
-
-                    for key in curr_allocation_dict:
-                        log(str(curr_allocation_dict[key]))
-                        log(str(type(curr_allocation_dict[key])))
-
                     for key in curr_allocation_dict:
                         if key in weights.index:
-                            curr_allocation_dict[key] = round(weights[key], 1)
-
-                    log('after')
-                    for key in curr_allocation_dict:
-                        log(str(curr_allocation_dict[key]))
-                        log(str(type(curr_allocation_dict[key])))
-
-                    # curr_allocation_dict["XLY"] = .9
-                    # curr_allocation_dict["XLE"] = .2
+                            curr_allocation_dict[key] = int(weights[key])
 
 
-                    log(str(type(curr_allocation_dict)))
-                    log(str(curr_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
