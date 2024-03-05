@@ -165,7 +165,7 @@ class TradingStrategy(Strategy):
 
                     total_keys = len(top_n)
 
-                    cov_mx = self.AAA_covariance(data_df, timestamp_next, symbols=top_n.index.values,
+                    cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
 
 
