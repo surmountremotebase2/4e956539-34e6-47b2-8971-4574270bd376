@@ -206,7 +206,7 @@ class TradingStrategy(Strategy):
                     log(str(type(wts)))
                     log(str(type(top_n.index.values.tolist())))
 
-                    weights = round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
+                    weights = self.round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
                     log('weights')
                     log(str(weights))
