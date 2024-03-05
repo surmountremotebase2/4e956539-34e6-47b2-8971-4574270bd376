@@ -180,10 +180,10 @@ class TradingStrategy(Strategy):
                 # log(str(curr_allocation_dict))
                 # log(str(self.prev_allocation_dict))
 
-                if sum(pd.notna(curr_ret)) >= 5:
+                if sum(pd.notna(curr_ret)) >= 3:
                     log(str(timestamp))
                     # log('inside if')
-                    top_n = curr_ret.nlargest(5)
+                    top_n = curr_ret.nlargest(3)
                     # log('top 3 ret')
                     # log(str(top_n))
 
