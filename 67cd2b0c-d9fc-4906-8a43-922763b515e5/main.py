@@ -215,6 +215,9 @@ class TradingStrategy(Strategy):
                     #     else:
                     #         curr_allocation_dict[key] = 0
 
+                    curr_allocation_dict["XLY"] = .9
+                    curr_allocation_dict["XLE"] = .2
+
                     # log('after')
                     log(str(curr_allocation_dict))
 
