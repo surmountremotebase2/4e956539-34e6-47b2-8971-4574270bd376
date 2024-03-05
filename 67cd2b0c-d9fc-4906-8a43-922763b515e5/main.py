@@ -158,9 +158,9 @@ class TradingStrategy(Strategy):
                 curr_ret = returns.loc[timestamp]
 
 
-                if sum(pd.notna(curr_ret)) >= 5:
+                if sum(pd.notna(curr_ret)) >= 3:
 
-                    top_n = curr_ret.nlargest(5)
+                    top_n = curr_ret.nlargest(3)
 
 
                     total_keys = len(top_n)
