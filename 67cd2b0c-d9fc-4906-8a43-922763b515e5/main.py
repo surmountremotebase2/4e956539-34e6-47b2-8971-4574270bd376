@@ -120,7 +120,7 @@ class TradingStrategy(Strategy):
         
         weights = numerator / denominator
     
-    return weights
+        return weights
     def round_weights(weights, thresh=0.02):
         weights = weights.copy() / weights.sum()
         
