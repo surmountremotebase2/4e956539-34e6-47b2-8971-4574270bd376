@@ -121,7 +121,7 @@ class TradingStrategy(Strategy):
         weights = numerator / denominator
     
         return weights
-    def round_weights(weights, thresh=0.02):
+    def round_weights(self, weights, thresh=0.02):
         weights = weights.copy() / weights.sum()  # make sure it sums to 1.0
         ix = weights < thresh
         adj = sum(weights[ix]) * weights[~ix] / weights[~ix].sum()
