@@ -216,7 +216,7 @@ class TradingStrategy(Strategy):
                     # curr_allocation_dict["XLY"] = .9
                     # curr_allocation_dict["XLE"] = .2
 
-                    # log('after')
+                    log('after')
                     log(str(curr_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
