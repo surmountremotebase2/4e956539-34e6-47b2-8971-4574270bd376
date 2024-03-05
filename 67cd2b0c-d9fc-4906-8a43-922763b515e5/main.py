@@ -174,11 +174,11 @@ class TradingStrategy(Strategy):
 
                     weights = self.round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
-                    log(str(weights))
+                    # log(str(weights))
                     for key in curr_allocation_dict:
                         if key in weights.index:
-                            curr_allocation_dict[key] = int(weights[key])
+                            curr_allocation_dict[key] = float(weights[key])
 
-                    log(str(curr_allocation_dict))
+                    # log(str(curr_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
