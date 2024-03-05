@@ -191,7 +191,7 @@ class TradingStrategy(Strategy):
                     for key in top_n.index:
                         curr_allocation_dict[key] = 1 / total_keys
 
-                    cov_mx = self.AAA_covariance(data_df, timestamp, symbols=self.tickers,
+                    cov_mx = self.AAA_covariance(data_df, timestamp, symbols=top_n.index.values,
                                         method=None)
 
                     log('cov_mx')
