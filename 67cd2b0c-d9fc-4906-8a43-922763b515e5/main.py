@@ -207,11 +207,13 @@ class TradingStrategy(Strategy):
                     log('cov_mx')
                     log(str(cov_mx))
 
-                    weights = self.calculate_weights(cov_mx)
+                    wts = self.calculate_weights(cov_mx)
 
                     log(str(weights))
                     log(str(type(weights)))
-                    log(str(type(top_n.index.values)))
+                    log(str(type(top_n.index.values.to_list())))
+
+                    weights = round_weights(pd.Series(index=top_n.index.values.to_list(), data=wts))
                     
                     if cov_mx is not None:
                         # ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
