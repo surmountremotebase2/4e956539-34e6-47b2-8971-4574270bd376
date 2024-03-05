@@ -209,6 +209,9 @@ class TradingStrategy(Strategy):
 
                     # log(str(curr_allocation_dict))
 
+                    log('before')
+                    log(str(curr_allocation_dict))
+
                     for key in curr_allocation_dict:
                         if key in weights.index:
                             curr_allocation_dict[key] = round(weights[key], 1)
