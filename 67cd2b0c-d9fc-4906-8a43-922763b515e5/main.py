@@ -210,6 +210,7 @@ class TradingStrategy(Strategy):
                     # log(str(curr_allocation_dict))
 
                     log('before')
+                    log(str(type(curr_allocation_dict)))
                     log(str(curr_allocation_dict))
 
                     for key in curr_allocation_dict:
@@ -220,6 +221,7 @@ class TradingStrategy(Strategy):
                     # curr_allocation_dict["XLE"] = .2
 
                     log('after')
+                    log(str(type(curr_allocation_dict)))
                     log(str(curr_allocation_dict))
 
                     return TargetAllocation(curr_allocation_dict)
