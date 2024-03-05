@@ -205,13 +205,13 @@ class TradingStrategy(Strategy):
                     weights = self.round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
                     log('weights')
-                    log(str(type(weights)))
+                    log(str(weights))
 
                     # log(str(curr_allocation_dict))
 
                     for key in curr_allocation_dict:
                         if key in weights.index:
-                            curr_allocation_dict[key] = weights[key]
+                            curr_allocation_dict[key] = round(weights[key], 4)
                         else:
                             curr_allocation_dict[key] = 0
 
