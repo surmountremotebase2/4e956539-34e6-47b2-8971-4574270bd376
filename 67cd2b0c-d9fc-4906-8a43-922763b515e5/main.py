@@ -149,8 +149,7 @@ class TradingStrategy(Strategy):
 
             # returns = returns.drop(columns=['SPY'])
 
-            timestamp = dates[-2]
-            timestamp_next = dates[-1]
+            timestamp = dates[-1]
     
             is_realloc_date = self.check_realloc_date(self.last_trading_days, timestamp)
 
