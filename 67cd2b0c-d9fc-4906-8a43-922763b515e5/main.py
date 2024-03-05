@@ -208,35 +208,9 @@ class TradingStrategy(Strategy):
 
                     weights = round_weights(pd.Series(index=top_n.index.values.tolist(), data=wts))
                     
-                    if cov_mx is not None:
-                        # ef = pypfopt.EfficientFrontier(np.zeros((len(top_n))), cov_mx)
-                        # # if param.l2_reg_gamma is not None:
-                        # #     ef.add_objective(pypfopt.objective_functions.L2_reg, gamma=param.l2_reg_gamma)
-                        # ef.min_volatility()
-                    
-                        # weights = round_weights(pd.Series(index=ef.tickers, data=ef.weights))
-
-                        tickers = cov_mx.index.tolist()
-
-                        # Calculate the inverse of the covariance matrix
-                        cov_inv = np.linalg.inv(cov_mx)
-
-                        # Define a vector of ones
-                        ones = np.ones((len(tickers), 1))
-
-                        # Calculate the denominator of the weights formula
-                        denominator = ones.T.dot(cov_inv).dot(ones).item()
-
-                        # Calculate the numerator of the weights formula
-                        numerator = cov_inv.dot(ones)
-
-                        # Calculate the weights
-                        weights = numerator / denominator
-
-                        # Round the weights
-                        weights = self.round_weights(pd.Series(index=tickers, data=weights.flatten()))
-                        log('weights: ')
-                        log(str(weights))
+                    log('weights')
+                    log(str(weights))
+    
                     # for key, value in my_dict.items():
                     #     print(key, value)
                     
