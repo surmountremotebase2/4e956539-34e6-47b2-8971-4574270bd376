@@ -12,7 +12,7 @@ class TradingStrategy(Strategy):
         self.last_trading_days = None
         self.market_open_dates = None
         self.date_fetched = False
-        self.tickers = ["VGK", "EWJ", "EEM", "VNQ", "RWX", "IEF", "TLT", "DBC", "IAU"]
+        self.tickers = ["SPY", "VGK", "EWJ", "EEM", "VNQ", "RWX", "IEF", "TLT", "DBC", "IAU"]
 
     @property
     def interval(self):
@@ -147,7 +147,7 @@ class TradingStrategy(Strategy):
 
             returns = self.calculate_return(data_df, days=126)
 
-            returns = returns.drop(columns=['SPY'])
+            # returns = returns.drop(columns=['SPY'])
 
             timestamp = dates[-1]
     
