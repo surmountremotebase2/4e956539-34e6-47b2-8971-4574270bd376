@@ -133,6 +133,7 @@ class TradingStrategy(Strategy):
         d = data["ohlcv"]
     
         # log(str(data["holdings"]))
+        log('market data')
         log(str(d))
 
         if len(d) != 0:
