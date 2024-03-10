@@ -91,7 +91,7 @@ class TradingStrategy(Strategy):
 
         self.last_trading_days = self.get_alloc_dates_for_nth_trading_day(self.market_open_dates, 21)
         
-    def AAA_covariance(self, price_df, timestamp, symbols, method=None):
+    def KDA_covariance(self, price_df, timestamp, symbols, method=None):
         ncor = 126  # days back for correlation calc
         nvol = 20   # days back for volatility calc
         ix = price_df.index.get_loc(timestamp)
