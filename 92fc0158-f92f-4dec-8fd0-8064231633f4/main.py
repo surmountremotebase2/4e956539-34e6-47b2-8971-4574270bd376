@@ -133,6 +133,7 @@ class TradingStrategy(Strategy):
         d = data["ohlcv"]
     
         # log(str(data["holdings"]))
+        log(str(d))
 
         if len(d) != 0:
             start_date = '2015-02-05'
